@@ -14,7 +14,7 @@ import time
 # Tkinter Settings
 root = Tk()
 root.title('SpyFall --- Loading Page')
-root.geometry("700x500")
+root.geometry("500x200")
 color = 'blue'
 root.configure(bg=color)
 root.resizable(width=False, height=False)
@@ -129,11 +129,23 @@ def StartGame ():
 
     if PA == 3:
         #3 Player Game Page setup
-        3PGRoot = Tk()
-        3PGRoot.title('SpyFall --- 3 Players')
-        root.geometry("400x400")
-        color = 'blue'
-        3PGRoot.configure(bg=color)
+        #P3Root = Tk()
+        Root.title('SpyFall --- 3 Players')
+        root.geometry("500x400")
+
+#Player Functions
+def AddPlayer ():
+        PA = PA_num.get()
+        playercount = 0
+        PlayerRow = 5
+
+        while playercount != PA:
+            playerbox = Label(root, text = 'Player ' + playercount, bg = color)
+            playerbox.grid(row = PlayerRow, column = 1)
+            PlayerRow = PlayerRow + 1
+            playercount = playercount + 1
+            
+
 
         
         
