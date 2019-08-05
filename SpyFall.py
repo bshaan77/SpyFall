@@ -100,7 +100,7 @@ InstructionsButton.grid(row = 0, column = 1)
 
 
 #Start Game
-
+############################### Start Game does not work yet #################################
 def StartGame ():
     PA = PA_num.get()
     TPR = TPR_num.get()
@@ -127,23 +127,33 @@ def StartGame ():
 
 
 
-    if PA == 3:
-        #3 Player Game Page setup
-        #P3Root = Tk()
-        Root.title('SpyFall --- 3 Players')
-        root.geometry("500x400")
+    AddPlayer()
 
 #Player Functions
+############################### Esential function to do start game (Can't get it to work)
 def AddPlayer ():
-        PA = PA_num.get()
-        playercount = 0
-        PlayerRow = 5
+    
+    PA = PA_num.get()
+    PA = int(PA)
+    playercount = 0
+    PlayerRow = 5
+    Label1 = None
+    Label2 = None
+    Label3 = None
+    Label4 = None
+    Label5 = None
+    Label6 = None
+    Label7 = None
+    Label8 = None
+    Label9 = None
+    Label10 = None
+    var = (Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8, Label9, Label10)
 
-        while playercount != PA:
-            playerbox = Label(root, text = 'Player ' + playercount, bg = color)
-            playerbox.grid(row = PlayerRow, column = 1)
-            PlayerRow = PlayerRow + 1
-            playercount = playercount + 1
+    for i in range(PA):
+        var[i] = Label(root, text = 'Player ' + playercount, bg = color)
+        var[i].grid(row = PlayerRow, column = 1)
+        PlayerRow = PlayerRow + 1
+        playercount = playercount + 1
             
 
 
