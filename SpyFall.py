@@ -2,6 +2,11 @@
 # SpyFall game
 # Using Tkinter
 
+## ---------------------- Objective ---------------------- ##
+# To build a well known game known as spyfall
+# Have a good user interface with Instructions and a well built game layout
+# Build a startup page with game setup (Done)
+# Build the game page that is based apon the setup of the game
 
 
 from tkinter import *
@@ -131,6 +136,8 @@ def StartGame ():
 
 #Player Functions
 ############################### Esential function to do start game (Can't get it to work)
+    ########################### What we are trying to do is create a loop to make labels
+    ########################### Problem we can't use the same variable so how do we make a loop that can make its own variables
 def AddPlayer ():
     
     PA = PA_num.get()
