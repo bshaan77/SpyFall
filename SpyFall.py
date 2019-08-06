@@ -19,7 +19,7 @@ import time
 # Tkinter Settings
 root = Tk()
 root.title('SpyFall --- Loading Page')
-root.geometry("500x200")
+root.geometry("500x800")
 color = 'blue'
 root.configure(bg=color)
 root.resizable(width=False, height=False)
@@ -138,12 +138,15 @@ def StartGame ():
 ############################### Esential function to do start game (Can't get it to work)
     ########################### What we are trying to do is create a loop to make labels
     ########################### Problem we can't use the same variable so how do we make a loop that can make its own variables
+    ########################### Solved use list instead of tuple (Tuple you can't redefine the values, list you can)
+    
 def AddPlayer ():
     
     PA = PA_num.get()
     PA = int(PA)
-    playercount = 0
     PlayerRow = 5
+    a = 1
+    print("PA value: ", PA)
     Label1 = None
     Label2 = None
     Label3 = None
@@ -154,14 +157,17 @@ def AddPlayer ():
     Label8 = None
     Label9 = None
     Label10 = None
-    var = (Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8, Label9, Label10)
-
+    player_list = [Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8, Label9, Label10]
     for i in range(PA):
-        var[i] = Label(root, text = 'Player ' + playercount, bg = color)
-        var[i].grid(row = PlayerRow, column = 1)
+        player_list[i] = Label(root, text = 'Player ' + str(a), bg = color)
+        player_list[i].grid(row = PlayerRow, column = 0)
         PlayerRow = PlayerRow + 1
-        playercount = playercount + 1
-            
+        a = a + 1
+
+##    for i in range(0, PA):
+##        player_list[i] = Label(root, text = 'Player ' + str(i), bg = color)
+##        player_list[i].grid(row = PlayerRow, column = 1)
+##        PlayerRow = PlayerRow + 1            
 
 
         
