@@ -147,6 +147,7 @@ def AddPlayer ():
     PlayerRow = 5
     a = 1
     print("PA value: ", PA)
+    #Labels to indicate player and corresponding number
     Label1 = None
     Label2 = None
     Label3 = None
@@ -157,10 +158,25 @@ def AddPlayer ():
     Label8 = None
     Label9 = None
     Label10 = None
+    #Entry Boxes for names
+    Reveal1 = None
+    Reveal2 = None
+    Reveal3 = None
+    Reveal4 = None
+    Reveal5 = None
+    Reveal6 = None
+    Reveal7 = None
+    Reveal8 = None
+    Reveal9 = None
+    Reveal10 = None
+    
     player_list = [Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8, Label9, Label10]
+    reveal_card = [Reveal1, Reveal2, Reveal3, Reveal4, Reveal5, Reveal6, Reveal7, Reveal8, Reveal9, Reveal10]
     for i in range(PA):
         player_list[i] = Label(root, text = 'Player ' + str(a), bg = color)
         player_list[i].grid(row = PlayerRow, column = 0)
+        reveal_card[i] = Button(root, text = 'Reveal', width = 8, command = None, highlightbackground = color)
+        reveal_card[i].grid(row = PlayerRow, column = 1)
         PlayerRow = PlayerRow + 1
         a = a + 1
 
