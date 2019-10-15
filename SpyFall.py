@@ -160,7 +160,7 @@ def AddPlayer ():
     Label10 = None
     #Entry Boxes for names
     Reveal1 = None
-    Reveal2 = None
+    Reveal2 = Nonew
     Reveal3 = None
     Reveal4 = None
     Reveal5 = None
@@ -180,11 +180,34 @@ def AddPlayer ():
         PlayerRow = PlayerRow + 1
         a = a + 1
 
-##    for i in range(0, PA):
-##        player_list[i] = Label(root, text = 'Player ' + str(i), bg = color)
-##        player_list[i].grid(row = PlayerRow, column = 1)
-##        PlayerRow = PlayerRow + 1            
 
+## Locations and Occupations
+Beach = ['Life Guard', ' Boat Rental Manger', 'Ice Cream Truck Driver', 'Swimmer']
+Casino = ['Dealer', 'Gambler', 'Casino Owner']
+Bank = ['Manager', 'Intern', 'Police', 'Burgular', 'Ordinary Person']
+Hotel = ['Janitor 1', 'Janitor 2', 'Manager', 'Hotel Staff', 'Entertainment Coordinater', 'Guest 1', 'Guest 2']
+Resturant = ['Waiter', 'Cook', 'Chef', 'Manager', 'Waiter', 'Customer 1', 'Customer 2']
+Hospital = ['Doctor', 'Nurse', 'Patient', 'Ambulence Driver', 'Pediatrician', 'Doctor 2', 'Nurse 2']
+School = ['Teacher', 'Assistant teacher', 'student 1', 'student 2', 'student 3', 'principal', 'Janitor', 'Student 4']
+Airplane = ['Pilot', 'Co-Pilot', 'Co-Pilot', 'Air Hostess', 'Air Host', 'Security Person 1', 'Security Person 2']
+Submarine = ['Diver', 'Submarine Owner', 'Scientist', 'Hobbiest', 'Diver 2']
+Studio = ['Coordinator', 'Artist', 'Music Producer', 'Editor', 'Sound Manager', 'Camera Man']
+locations_list = [Beach, Casino, Bank, Hotel, Resturant, Hospital, School, Airplane, Submarine, Studio]
+
+def Get Location (locations_list):
+    Location = locations_list[random.randit[0,10]]
+    return(Location)
+
+## Player Class
+class player:
+    def __init__(self, name, location, Job):
+        self.name = name
+        self.location = location
+        self.job = job
+    
+    
+
+        
 
         
         
