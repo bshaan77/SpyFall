@@ -160,7 +160,7 @@ def AddPlayer ():
     Label10 = None
     #Entry Boxes for names
     Reveal1 = None
-    Reveal2 = Nonew
+    Reveal2 = None
     Reveal3 = None
     Reveal4 = None
     Reveal5 = None
@@ -194,7 +194,7 @@ Submarine = ['Diver', 'Submarine Owner', 'Scientist', 'Hobbiest', 'Diver 2']
 Studio = ['Coordinator', 'Artist', 'Music Producer', 'Editor', 'Sound Manager', 'Camera Man']
 locations_list = [Beach, Casino, Bank, Hotel, Resturant, Hospital, School, Airplane, Submarine, Studio]
 
-def Get Location (locations_list):
+def GetLocation (locations_list):
     Location = locations_list[random.randit[0,10]]
     return(Location)
 
