@@ -8,6 +8,13 @@
 # Build a startup page with game setup (Done)
 # Build the game page that is based apon the setup of the game
 
+## ---- Update 12/10/19 ---- ##
+#   - Tasks to do:
+#       - Add Reveal Functionality
+#       - Add game data
+#       - Minor editing and fixing
+#   - Goal: Finish by 12/29/19
+
 
 from tkinter import *
 import tkinter.messagebox
