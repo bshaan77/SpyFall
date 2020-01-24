@@ -54,7 +54,11 @@ TimePerRound.grid(row = 2, sticky = W)
 TPREntry = Entry(root, textvariable = TPR_num)
 TPREntry.grid(row = 2, column = 1)
 
-
+##Reveal
+def reveal():
+    RevealRoot = Tk()
+    HideButton = Button(root, text="Quit", command=quit).pack()
+    root.mainloop()
 
 ##Instructions
 def instructions():
@@ -182,7 +186,7 @@ def AddPlayer ():
     for i in range(PA):
         player_list[i] = Label(root, text = 'Player ' + str(a), bg = color)
         player_list[i].grid(row = PlayerRow, column = 0)
-        reveal_card[i] = Button(root, text = 'Reveal', width = 8, command = None, highlightbackground = color)
+        reveal_card[i] = Button(root, text = 'Reveal', width = 8, command = reveal, highlightbackground = color)
         reveal_card[i].grid(row = PlayerRow, column = 1)
         PlayerRow = PlayerRow + 1
         a = a + 1
