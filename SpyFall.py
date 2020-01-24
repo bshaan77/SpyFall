@@ -20,6 +20,7 @@ from tkinter import *
 import tkinter.messagebox
 
 import time
+import random
 
 
 
@@ -54,10 +55,42 @@ TimePerRound.grid(row = 2, sticky = W)
 TPREntry = Entry(root, textvariable = TPR_num)
 TPREntry.grid(row = 2, column = 1)
 
+## Locations and Occupations
+Beach = ['Life Guard', ' Boat Rental Manger', 'Ice Cream Truck Driver', 'Swimmer']
+Casino = ['Dealer', 'Gambler', 'Casino Owner']
+Bank = ['Manager', 'Intern', 'Police', 'Burgular', 'Ordinary Person']
+Hotel = ['Janitor 1', 'Janitor 2', 'Manager', 'Hotel Staff', 'Entertainment Coordinater', 'Guest 1', 'Guest 2']
+Resturant = ['Waiter', 'Cook', 'Chef', 'Manager', 'Waiter', 'Customer 1', 'Customer 2']
+Hospital = ['Doctor', 'Nurse', 'Patient', 'Ambulence Driver', 'Pediatrician', 'Doctor 2', 'Nurse 2']
+School = ['Teacher', 'Assistant teacher', 'student 1', 'student 2', 'student 3', 'principal', 'Janitor', 'Student 4']
+Airplane = ['Pilot', 'Co-Pilot', 'Co-Pilot', 'Air Hostess', 'Air Host', 'Security Person 1', 'Security Person 2']
+Submarine = ['Diver', 'Submarine Owner', 'Scientist', 'Hobbiest', 'Diver 2']
+Studio = ['Coordinator', 'Artist', 'Music Producer', 'Editor', 'Sound Manager', 'Camera Man']
+locations = [Beach, Casino, Bank, Hotel, Resturant, Hospital, School, Airplane, Submarine, Studio]
+locations_strings = ["Beach", "Casino", "Bank", "Hotel", "Resturant", "Hospital", "School", "Airplane", "Submarine", "Studio"]
+#locations = {Beach : "Beach" , Casino: "Casino", Bank: "Casino", Hotel: "Hotel", Resturant: "Resturant", Hospital: "Hospital", School: "School", Airplane: "Airplane", Submarine: "Submarine", Studio: "Studio"}
+
+
+#Location Decide + Player Role
+def GetLocation (locations):
+    location_num = random.randint(0,9)
+    Location = locations_strings[location_num]
+    print(location_num)
+    print(Location)
+    return(Location)
+
+ActualLocationReveal = GetLocation(locations_strings)
+
+
 ##Reveal
 def reveal():
     RevealRoot = Tk()
-    HideButton = Button(root, text="Quit", command=quit).pack()
+    RevealRoot.title('Player Details')
+    HideButton = Button(RevealRoot, text="Hide", width = 10, command=RevealRoot.destroy)
+    HideButton.grid(row = 0, column = 1)
+    InstructionsButton = Button(root, text = 'Instructions', width = 10, command = instructions, highlightbackground = color)
+    LocationReveal = Label(RevealRoot, text = "Location:" + ActualLocationReveal)
+    LocationReveal.grid(row = 1, column = 1)
     root.mainloop()
 
 ##Instructions
@@ -192,22 +225,9 @@ def AddPlayer ():
         a = a + 1
 
 
-## Locations and Occupations
-Beach = ['Life Guard', ' Boat Rental Manger', 'Ice Cream Truck Driver', 'Swimmer']
-Casino = ['Dealer', 'Gambler', 'Casino Owner']
-Bank = ['Manager', 'Intern', 'Police', 'Burgular', 'Ordinary Person']
-Hotel = ['Janitor 1', 'Janitor 2', 'Manager', 'Hotel Staff', 'Entertainment Coordinater', 'Guest 1', 'Guest 2']
-Resturant = ['Waiter', 'Cook', 'Chef', 'Manager', 'Waiter', 'Customer 1', 'Customer 2']
-Hospital = ['Doctor', 'Nurse', 'Patient', 'Ambulence Driver', 'Pediatrician', 'Doctor 2', 'Nurse 2']
-School = ['Teacher', 'Assistant teacher', 'student 1', 'student 2', 'student 3', 'principal', 'Janitor', 'Student 4']
-Airplane = ['Pilot', 'Co-Pilot', 'Co-Pilot', 'Air Hostess', 'Air Host', 'Security Person 1', 'Security Person 2']
-Submarine = ['Diver', 'Submarine Owner', 'Scientist', 'Hobbiest', 'Diver 2']
-Studio = ['Coordinator', 'Artist', 'Music Producer', 'Editor', 'Sound Manager', 'Camera Man']
-locations_list = [Beach, Casino, Bank, Hotel, Resturant, Hospital, School, Airplane, Submarine, Studio]
 
-def GetLocation (locations_list):
-    Location = locations_list[random.randit[0,10]]
-    return(Location)
+
+
 
 ## Player Class
 class player:
