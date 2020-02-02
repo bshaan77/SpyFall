@@ -2,6 +2,15 @@
 # SpyFall game
 # Using Tkinter
 
+## -------- How The Game Works -------- ##
+#   - Players are given a game card
+#       - This can be accessed by pressing reveal button
+#   - Players are to keep this card hidden from other player
+#   - One player will be a spy (this player is not given a location on their card)
+#   - Players are to ask questions about the location
+#   - Players are to identify who the spy is --- the spy won't be able to answer the questions
+#   - The spy is to identify what the location is and trick other players that you are not the spy
+
 ## ---------------------- Objective ---------------------- ##
 # To build a well known game known as spyfall
 # Have a good user interface with Instructions and a well built game layout
@@ -14,6 +23,15 @@
 #       - Add game data
 #       - Minor editing and fixing
 #   - Goal: Finish by 12/29/19
+
+## ---- "Capstone Code Complete" ---- ##
+#   - Game works
+#       - Location Reveals
+#       - Instructions Functional
+#       - Player Card Works Through Reveal Function
+#   - Not Working
+#       - List of Locations (This helps the spy to play)
+#       -Add spy to all occupation lists
 
 
 from tkinter import *
