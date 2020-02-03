@@ -58,6 +58,8 @@ root.resizable(width=False, height=False)
 # Game Variables
 PA_num = IntVar() #Amount of players
 TPR_num = IntVar() #Time Per Round
+SpyReveal = 0
+
 
 ## Game Settings
 #Amount Of Players (PA **player amount)
@@ -101,12 +103,15 @@ ActualLocationReveal = GetLocation(locations_strings)
 
 
 ##Reveal
-def reveal():
+def reveal(SpyReveal):
     RevealRoot = Tk()
     RevealRoot.title('Player Details')
     HideButton = Button(RevealRoot, text="Hide", width = 10, command=RevealRoot.destroy)
     HideButton.grid(row = 0, column = 1)
     InstructionsButton = Button(root, text = 'Instructions', width = 10, command = instructions, highlightbackground = color)
+    if SpyReveal == 0:
+        ActualLocationReveal = "You Are The Spy"
+    SpyReveal = SpyReveal + 1
     LocationReveal = Label(RevealRoot, text = "Location:" + ActualLocationReveal)
     LocationReveal.grid(row = 1, column = 1)
     root.mainloop()
@@ -201,12 +206,15 @@ def StartGame ():
     ########################### What we are trying to do is create a loop to make labels
     ########################### Problem we can't use the same variable so how do we make a loop that can make its own variables
     ########################### Solved use list instead of tuple (Tuple you can't redefine the values, list you can)
-    
+
+
+ 
 def AddPlayer ():
     
     PA = PA_num.get()
     PA = int(PA)
     PlayerRow = 5
+    
     a = 1
     print("PA value: ", PA)
     #Labels to indicate player and corresponding number
@@ -237,7 +245,7 @@ def AddPlayer ():
     for i in range(PA):
         player_list[i] = Label(root, text = 'Player ' + str(a), bg = color)
         player_list[i].grid(row = PlayerRow, column = 0)
-        reveal_card[i] = Button(root, text = 'Reveal', width = 8, command = reveal, highlightbackground = color)
+        reveal_card[i] = Button(root, text = 'Reveal', width = 8, command = reveal(SpyReveal), highlightbackground = color)
         reveal_card[i].grid(row = PlayerRow, column = 1)
         PlayerRow = PlayerRow + 1
         a = a + 1
@@ -265,6 +273,43 @@ class player:
 StartGameButton = Button(root, text = 'Start Game', width = 10, command = StartGame, highlightbackground = color)
 StartGameButton.grid(row = 3, column = 1)
 
+#Location Buttons
+LocationNum = len(locations)
+LocationRow = 10
+b = 1
+b = int(b)
+LLLabel1 = None
+LLLabel2 = None
+LLLabel3 = None
+LLLabel4 = None
+LLLabel5 = None
+LLLabel6 = None
+LLLabel7 = None
+LLLabel8 = None
+LLLabel9 = None
+LLLabel10 = None
+
+LLabel1 = None
+LLabel2 = None
+LLabel3 = None
+LLabel4 = None
+LLabel5 = None
+LLabel6 = None
+LLabel7 = None
+LLabel8 = None
+LLabel9 = None
+LLabel10 = None
+llocation_list = [LLLabel1, LLLabel2, LLLabel3, LLLabel4, LLLabel5, LLLabel6, LLLabel7, LLLabel8, LLLabel9, LLLabel10]
+location_list = [LLabel1, LLabel2, LLabel3, LLabel4, LLabel5, LLabel6, LLabel7, LLabel8, LLabel9, LLabel10]
+for i in range(LocationNum):
+    llocation_list[i] = Label(root, text = "Location" + str(b), bg = color)
+    llocation_list[i].grid(row = LocationRow, column = 0)
+    location_list[i] = Label(root, text = str(locations_strings[i]), bg = color)
+    location_list[i].grid(row = LocationRow, column = 1)
+
+    LocationRow = LocationRow + 1
+    b = b + 1
+    
 
 
 root.mainloop()
