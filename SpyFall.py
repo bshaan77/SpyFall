@@ -42,6 +42,7 @@ import random
 
 
 
+
 # Tkinter Settings
 root = Tk()
 root.title('SpyFall --- Loading Page')
@@ -49,7 +50,7 @@ root.geometry("500x800")
 color = 'blue'
 root.configure(bg=color)
 root.resizable(width=False, height=False)
-
+SpyReveal = None
 
 
 
@@ -58,7 +59,7 @@ root.resizable(width=False, height=False)
 # Game Variables
 PA_num = IntVar() #Amount of players
 TPR_num = IntVar() #Time Per Round
-SpyReveal = 0
+
 
 
 ## Game Settings
@@ -99,22 +100,29 @@ def GetLocation (locations):
     print(Location)
     return(Location)
 
-ActualLocationReveal = GetLocation(locations_strings)
 
 
+ActualLocation = GetLocation(locations_strings)
 ##Reveal
 def reveal(SpyReveal):
+    print("OG", SpyReveal)
+    if SpyReveal >= 1:
+        ActualLocationReveal = ActualLocation
+    if SpyReveal == 0:
+        ActualLocationReveal = "You Are The Spy"
+        SpyReveal = SpyReveal + 1
+        print(SpyReveal)
+    
+        
     RevealRoot = Tk()
     RevealRoot.title('Player Details')
     HideButton = Button(RevealRoot, text="Hide", width = 10, command=RevealRoot.destroy)
     HideButton.grid(row = 0, column = 1)
     InstructionsButton = Button(root, text = 'Instructions', width = 10, command = instructions, highlightbackground = color)
-    if SpyReveal == 0:
-        ActualLocationReveal = "You Are The Spy"
-    SpyReveal = SpyReveal + 1
     LocationReveal = Label(RevealRoot, text = "Location:" + ActualLocationReveal)
     LocationReveal.grid(row = 1, column = 1)
     root.mainloop()
+
 
 ##Instructions
 def instructions():
@@ -245,7 +253,7 @@ def AddPlayer ():
     for i in range(PA):
         player_list[i] = Label(root, text = 'Player ' + str(a), bg = color)
         player_list[i].grid(row = PlayerRow, column = 0)
-        reveal_card[i] = Button(root, text = 'Reveal', width = 8, command = reveal(SpyReveal), highlightbackground = color)
+        reveal_card[i] = Button(root, text = 'Reveal', width = 8, command = lambda: reveal(SpyReveal), highlightbackground = color)
         reveal_card[i].grid(row = PlayerRow, column = 1)
         PlayerRow = PlayerRow + 1
         a = a + 1
