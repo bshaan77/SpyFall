@@ -47,7 +47,7 @@ spynum = 0
 # Tkinter Settings
 root = Tk()
 root.title('SpyFall --- Loading Page')
-root.geometry("500x800")
+root.geometry("500x600")
 color = 'blue'
 root.configure(bg=color)
 root.resizable(width=False, height=False)
@@ -93,28 +93,43 @@ locations_strings = ["Beach", "Casino", "Bank", "Hotel", "Resturant", "Hospital"
 #locations = {Beach : "Beach" , Casino: "Casino", Bank: "Casino", Hotel: "Hotel", Resturant: "Resturant", Hospital: "Hospital", School: "School", Airplane: "Airplane", Submarine: "Submarine", Studio: "Studio"}
 
 
+location_num = random.randint(0,9)
 #Location Decide + Player Role
 def GetLocation (locations):
-    location_num = random.randint(0,9)
+
     Location = locations_strings[location_num]
     print(location_num)
     print(Location)
     return(Location)
-
-while spynum <= 2:
-    if spynum == 0:
-        ActualLocation = ("You Are The Spy")
-        print(spynum)
-        spynum = spynum + 1
-    else:
-        ActualLocation = GetLocation(locations_strings)
-        spynum = spynum +1
-        print(spynum)
+def GetOccupation (locations):
+    
+    location_num
+    Occupationlist = locations[location_num]
+    OccupationNum = (len(Occupationlist) - 1)
+    OccupationNumReveal = random.randint(0,OccupationNum)
+    Occupation = Occupationlist[OccupationNumReveal]
+    print(location_num)
+    print(Occupation)
+    return(Occupation)   
         
 
-
+ActualLocationReveal = GetLocation(locations)
 ##Reveal
 def reveal():
+
+    RevealRoot = Tk()
+    RevealRoot.title('Player Details')
+    HideButton = Button(RevealRoot, text="Hide", width = 10, command=RevealRoot.destroy)
+    HideButton.grid(row = 0, column = 1)
+    InstructionsButton = Button(root, text = 'Instructions', width = 10, command = instructions, highlightbackground = color)
+    LocationReveal = Label(RevealRoot, text = "Location:" + ActualLocationReveal)
+    LocationReveal.grid(row = 1, column = 1)
+    Occupation = GetOccupation(locations)
+    OccupationReveal = Label(RevealRoot, text = "Occupation:" + Occupation)
+    OccupationReveal.grid(row = 2, column = 1)
+    root.mainloop()
+
+def revealspy():
 ##    print("OG", SpyReveal)
 ##    if SpyReveal >= 1:
 ##        ActualLocationReveal = ActualLocation
@@ -125,11 +140,11 @@ def reveal():
     RevealRoot.title('Player Details')
     HideButton = Button(RevealRoot, text="Hide", width = 10, command=RevealRoot.destroy)
     HideButton.grid(row = 0, column = 1)
-    InstructionsButton = Button(root, text = 'Instructions', width = 10, command = instructions, highlightbackground = color)
-    LocationReveal = Label(RevealRoot, text = "Location:" + ActualLocationReveal)
-    LocationReveal.grid(row = 1, column = 1)
+    InstructionsButton = Button(RevealRoot, text = 'Instructions', width = 10, command = instructions, highlightbackground = color)
+    InstructionsButton.grid(row = 1, column = 1)
+    LocationReveal = Label(RevealRoot, text = "You are the spy | Guess the location")
+    LocationReveal.grid(row = 2, column = 1)
     root.mainloop()
-
 
 ##Instructions
 def instructions():
@@ -260,10 +275,16 @@ def AddPlayer ():
     for i in range(PA):
         player_list[i] = Label(root, text = 'Player ' + str(a), bg = color)
         player_list[i].grid(row = PlayerRow, column = 0)
-        reveal_card[i] = Button(root, text = 'Reveal', width = 8, command = reveal, highlightbackground = color)
-        reveal_card[i].grid(row = PlayerRow, column = 1)
-        PlayerRow = PlayerRow + 1
-        a = a + 1
+        if PlayerRow == 5:
+            reveal_card[i] = Button(root, text = 'Reveal', width = 8, command = revealspy, highlightbackground = color)
+            reveal_card[i].grid(row = PlayerRow, column = 1)
+            PlayerRow = PlayerRow + 1
+            a = a + 1
+        else:
+            reveal_card[i-1] = Button(root, text = 'Reveal', width = 8, command = reveal, highlightbackground = color)
+            reveal_card[i-1].grid(row = PlayerRow, column = 1)
+            PlayerRow = PlayerRow + 1
+            a = a + 1
 
 
 
