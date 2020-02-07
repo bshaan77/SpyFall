@@ -41,6 +41,7 @@ import time
 import random
 
 
+spynum = 0
 
 
 # Tkinter Settings
@@ -50,7 +51,7 @@ root.geometry("500x800")
 color = 'blue'
 root.configure(bg=color)
 root.resizable(width=False, height=False)
-SpyReveal = None
+SpyReveal = 0
 
 
 
@@ -100,20 +101,26 @@ def GetLocation (locations):
     print(Location)
     return(Location)
 
-
-
-ActualLocation = GetLocation(locations_strings)
-##Reveal
-def reveal(SpyReveal):
-    print("OG", SpyReveal)
-    if SpyReveal >= 1:
-        ActualLocationReveal = ActualLocation
-    if SpyReveal == 0:
-        ActualLocationReveal = "You Are The Spy"
-        SpyReveal = SpyReveal + 1
-        print(SpyReveal)
-    
+while spynum <= 2:
+    if spynum == 0:
+        ActualLocation = ("You Are The Spy")
+        print(spynum)
+        spynum = spynum + 1
+    else:
+        ActualLocation = GetLocation(locations_strings)
+        spynum = spynum +1
+        print(spynum)
         
+
+
+##Reveal
+def reveal():
+##    print("OG", SpyReveal)
+##    if SpyReveal >= 1:
+##        ActualLocationReveal = ActualLocation
+##    if SpyReveal == 0:
+##        ActualLocationReveal = "You Are The Spy"
+##        SpyReveal = SpyReveal + 1
     RevealRoot = Tk()
     RevealRoot.title('Player Details')
     HideButton = Button(RevealRoot, text="Hide", width = 10, command=RevealRoot.destroy)
@@ -253,7 +260,7 @@ def AddPlayer ():
     for i in range(PA):
         player_list[i] = Label(root, text = 'Player ' + str(a), bg = color)
         player_list[i].grid(row = PlayerRow, column = 0)
-        reveal_card[i] = Button(root, text = 'Reveal', width = 8, command = lambda: reveal(SpyReveal), highlightbackground = color)
+        reveal_card[i] = Button(root, text = 'Reveal', width = 8, command = reveal, highlightbackground = color)
         reveal_card[i].grid(row = PlayerRow, column = 1)
         PlayerRow = PlayerRow + 1
         a = a + 1
