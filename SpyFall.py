@@ -101,8 +101,8 @@ def GetLocation (locations):
     print(location_num)
     print(Location)
     return(Location)
+
 def GetOccupation (locations):
-    
     location_num
     Occupationlist = locations[location_num]
     OccupationNum = (len(Occupationlist) - 1)
