@@ -1,4 +1,3 @@
-# BYU Semester 1 Capstone Project
 # SpyFall game
 # Using Tkinter
 
@@ -14,24 +13,6 @@
 ## ---------------------- Objective ---------------------- ##
 # To build a well known game known as spyfall
 # Have a good user interface with Instructions and a well built game layout
-# Build a startup page with game setup (Done)
-# Build the game page that is based apon the setup of the game
-
-## ---- Update 12/10/19 ---- ##
-#   - Tasks to do:
-#       - Add Reveal Functionality
-#       - Add game data
-#       - Minor editing and fixing
-#   - Goal: Finish by 12/29/19
-
-## ---- "Capstone Code Complete" ---- ##
-#   - Game works
-#       - Location Reveals
-#       - Instructions Functional
-#       - Player Card Works Through Reveal Function
-#   - Not Working
-#       - List of Locations (This helps the spy to play)
-#       -Add spy to all occupation lists
 
 
 from tkinter import *
@@ -103,7 +84,7 @@ def GetLocation (locations):
     return(Location)
 
 def GetOccupation (locations):
-    location_num
+    #location_num
     Occupationlist = locations[location_num]
     OccupationNum = (len(Occupationlist) - 1)
     OccupationNumReveal = random.randint(0,OccupationNum)
@@ -116,7 +97,6 @@ def GetOccupation (locations):
 ActualLocationReveal = GetLocation(locations)
 ##Reveal
 def reveal():
-
     RevealRoot = Tk()
     RevealRoot.title('Player Details')
     HideButton = Button(RevealRoot, text="Hide", width = 10, command=RevealRoot.destroy)
@@ -202,49 +182,38 @@ InstructionsButton.grid(row = 0, column = 1)
 
 
 #Start Game
-############################### Start Game does not work yet #################################
+############################### Start Game #################################
 def StartGame ():
     PA = PA_num.get()
     TPR = TPR_num.get()
     PA = int(PA)
     TPR = int(TPR)
+    PlayerRow = 5
 
-    ## Cross Refrencing Instructions. Make sure that the parameters given are playable
+    ## Changing Paramaters to match minimum game settings & Calling the addplayer function
     if PA < 3:
-        print("There must be atleast 3 players")
-        print("REFER TO THE INSTRUCTIONS")
-        instructions()
+        minPlayer = 3
+        AddPlayer(minPlayer, PlayerRow)
+    elif PA > 10:
+        maxPlayer = 10
+        AddPlayer(maxPlayer, PlayerRow)
+    else:
+        AddPlayer(PA, PlayerRow)
 
-    if PA > 10:
-        print("A game with greater than 10 people would take too long")
-        print("REFER TO THE INSTRUCTIONS")
-        instructions()
 
-        #These are still playable, although promt the user just incase
+    #These are still playable, although promt the user just incase
     if TPR > 15:
         print("This is going to be a long game")
 
     if TPR < 3:
         print("This is going to be a short game")
 
-
-
-    AddPlayer()
-
 #Player Functions
-############################### Esential function to do start game (Can't get it to work)
-    ########################### What we are trying to do is create a loop to make labels
-    ########################### Problem we can't use the same variable so how do we make a loop that can make its own variables
     ########################### Solved use list instead of tuple (Tuple you can't redefine the values, list you can)
 
 
  
-def AddPlayer ():
-    
-    PA = PA_num.get()
-    PA = int(PA)
-    PlayerRow = 5
-    
+def AddPlayer (PA, PlayerRow):
     a = 1
     print("PA value: ", PA)
     #Labels to indicate player and corresponding number
@@ -258,7 +227,8 @@ def AddPlayer ():
     Label8 = None
     Label9 = None
     Label10 = None
-    #Entry Boxes for names
+    
+    #Entry Boxes for Player Cards
     Reveal1 = None
     Reveal2 = None
     Reveal3 = None
@@ -272,6 +242,17 @@ def AddPlayer ():
     
     player_list = [Label1, Label2, Label3, Label4, Label5, Label6, Label7, Label8, Label9, Label10]
     reveal_card = [Reveal1, Reveal2, Reveal3, Reveal4, Reveal5, Reveal6, Reveal7, Reveal8, Reveal9, Reveal10]
+
+    ## Cross Refrencing Instructions. Make sure that the parameters given are playable
+    if PA < 3:
+        print("There must be atleast 3 players")
+        print("REFER TO THE INSTRUCTIONS: Setting to 3 players")
+        instructions()
+    if PA > 10:
+        print("A game with greater than 10 people would take too long")
+        print("REFER TO THE INSTRUCTIONS: Setting to 10 players")
+        instructions()
+    
     for i in range(PA):
         player_list[i] = Label(root, text = 'Player ' + str(a), bg = color)
         player_list[i].grid(row = PlayerRow, column = 0)
